@@ -15,12 +15,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         User::create([
-            'name' => 'Lucas',
+            'name' => 'Lucas César Soares Santos',
+            'username' => 'lcsantos23',
             'email' => 'lucas@dev.com',
+            'email_verified_at' => now(),
             'cpf' => '17804597770',
+            'avatar' => '/images/avatars_images/lucas-cesar-soares-santos.png',
             'phone'=> '27998583004',
             'is_active' => true,
             'role' => 'admin',

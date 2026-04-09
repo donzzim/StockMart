@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('username')->unique();
-            $table->string('registration')->unique();
             $table->string('email')->unique();
             $table->string('cpf', 14)->nullable()->unique();
             $table->string('phone', 20)->nullable();
@@ -23,7 +22,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('is_active')->default(true);
-            $table->enum('role', ['admin', 'employee', 'customer'])->default('user');
+            $table->enum('role', ['admin', 'user'])->default('user');
             $table->rememberToken();
             $table->timestamps();
         });
