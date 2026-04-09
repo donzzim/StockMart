@@ -1,52 +1,63 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+    <div class="space-y-8">
+        <div class="space-y-4">
+            <span class="inline-flex items-center rounded-full border border-amber-300/20 bg-amber-300/10 px-4 py-1 text-sm font-medium text-amber-100">
+                Novo acesso
+            </span>
 
-        <!-- Name -->
-        <div>
-            <x-breeze::input-label for="name" :value="__('Name')" />
-            <x-breeze::text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-breeze::input-error :messages="$errors->get('name')" class="mt-2" />
+            <div class="space-y-3">
+                <h1 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl" style="font-family: 'Sora', sans-serif;">
+                    Crie sua conta para comecar a operar no StockMart.
+                </h1>
+
+                <p class="text-sm leading-6 text-slate-300">
+                    Cadastre-se para acessar o painel, revisar configuracoes da conta e preparar a area administrativa.
+                </p>
+            </div>
         </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-breeze::input-label for="email" :value="__('Email')" />
-            <x-breeze::text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-breeze::input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+        <form method="POST" action="{{ route('register') }}" class="space-y-5">
+            @csrf
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-breeze::input-label for="password" :value="__('Password')" />
+            <div class="space-y-2">
+                <x-breeze::input-label for="name" value="Nome" />
+                <x-breeze::text-input id="name" class="mt-2" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <x-breeze::input-error :messages="$errors->get('name')" class="mt-2" />
+            </div>
 
-            <x-breeze::text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+            <div class="space-y-2">
+                <x-breeze::input-label for="email" value="Email" />
+                <x-breeze::text-input id="email" class="mt-2" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                <x-breeze::input-error :messages="$errors->get('email')" class="mt-2" />
+            </div>
 
-            <x-breeze::input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+            <div class="grid gap-5 sm:grid-cols-2">
+                <div class="space-y-2">
+                    <x-breeze::input-label for="password" value="Senha" />
+                    <x-breeze::text-input id="password" class="mt-2" type="password" name="password" required autocomplete="new-password" />
+                    <x-breeze::input-error :messages="$errors->get('password')" class="mt-2" />
+                </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-breeze::input-label for="password_confirmation" :value="__('Confirm Password')" />
+                <div class="space-y-2">
+                    <x-breeze::input-label for="password_confirmation" value="Confirmar senha" />
+                    <x-breeze::text-input id="password_confirmation" class="mt-2" type="password" name="password_confirmation" required autocomplete="new-password" />
+                    <x-breeze::input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                </div>
+            </div>
 
-            <x-breeze::text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+            <div class="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4 text-sm text-slate-300">
+                Ao continuar, sua conta ja fica pronta para acessar o painel principal e personalizar o perfil.
+            </div>
 
-            <x-breeze::input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <a class="text-sm text-slate-400 transition hover:text-white" href="{{ route('login') }}">
+                    Ja possui acesso? <span class="font-semibold text-emerald-300">Entrar agora</span>
+                </a>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-breeze::primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-breeze::primary-button>
-        </div>
-    </form>
+                <x-breeze::primary-button>
+                    Criar conta
+                </x-breeze::primary-button>
+            </div>
+        </form>
+    </div>
 </x-guest-layout>

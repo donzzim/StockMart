@@ -32,23 +32,24 @@ class User extends Authenticatable implements FilamentUser
     protected $casts = [
         'email_verified_at' => 'datetime',
         'is_active' => 'boolean',
+        'role' => UserRole::class,
     ];
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->isAdmin();
+        return $this->role === UserRole::Admin;
     }
 
     public function isAdmin(): bool
     {
-        return $this->role === 'admin';
+        return $this->role === UserRole::Admin;
     }
 
     public function redirectTo(): string
     {
         return match ($this->role) {
-            UserRole::Admin->value => '/admin',
-            UserRole::User->value => '/dashboard',
+            UserRole::Admin => '/admin',
+            UserRole::User => '/dashboard',
             default => '/',
         };
     }

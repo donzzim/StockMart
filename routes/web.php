@@ -9,7 +9,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('breeze.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', 'only.user'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
